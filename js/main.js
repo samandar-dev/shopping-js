@@ -1,4 +1,3 @@
-
 let arr = [
   {
     id: 1,
@@ -39,7 +38,7 @@ for (let i = 0; i < arr.length; i++) {
         <div class="piz__desc">
           <h3 class="piz__item-title">${index.name}</h3>
           <p class="piz__item-mony">$${index.mony}</p>
-          <button class="piz__item-btn btns">Add to Cart</button>
+          <button class="piz__item-btn btns" onclick='addItem(${index.id} )'>Add to Cart</button>
         </div>
       </div>`
 
@@ -56,46 +55,94 @@ let deletee = document.querySelector('.delete-item');
 let sub = 0
 let tax = 0
 let tot = 0
-
-let removID = 0
+let sanoq = 1;
 let newArr = []
 
-for (let j = 0; j < elBtns.length; j++) {
-  elBtns[j].addEventListener('click', () => {
-    let li = document.createElement('li');
-    li.className = "piz__item";
-    li.innerHTML = `<div class="piz__item-box piz__item-anim d-flex">
-                <img class="piz__img" src=${arr[j].imgg} alt="pizza">
-                <div class="piz__desc">
-                  <h3 class="piz__item-title">${arr[j].name}</h3>
-                  <p class="piz__item-mony">$${arr[j].mony}</p>
-                  <span class="delete-item" id="${removID}">-</span>
-                  </div>
-              </div>`;
+function addItem(id) {
+  for (let i = 0; i < arr.length; i++) {
+    if (id == arr[i].id) {
+      newArr.push(arr[i]);
+    }
+  }
+  console.log(newArr);
 
-    elList.appendChild(li);
-    newArr[newArr.length] = arr[j]
+  for (let i = 0; i < newArr.length; i++) {
+    if (i == newArr.length - 1) {
+      let li = document.createElement('li');
+      li.className = "piz__item";
+      li.innerHTML = `
+      <div class="piz__item-box piz__item-anim d-flex">
+        <img class="piz__img" src=${newArr[i].imgg} alt="pizza">
+        <div class="piz__desc">
+          <h3 class="piz__item-title">${newArr[i].name}</h3>
+          <p class="piz__item-mony">$${newArr[i].mony}</p>
+          <span class="score">${sanoq}</span>
+          <span class="delete-item-minus" onclick='removeItem(${i})'>-</span>
+          <span class="add-item-plus" onclick='addItem(${i})'>+</span>
+          </div>
+      </div>`;
 
-    console.log(newArr);
+      elList.appendChild(li);
 
-    sub += eval(arr[j].mony);
-    elSubtotal.innerHTML = sub.toFixed(2) + '$';
+      sub += eval(newArr[i].mony);
+      elSubtotal.innerHTML = sub.toFixed(2) + '$';
 
-    tax += eval(arr[j].mony / 10);
-    elTax.innerHTML = tax.toFixed(2) + '$';
+      tax += eval(newArr[i].mony / 10);
+      elTax.innerHTML = tax.toFixed(2) + '$';
 
-    tot += eval(sub) + eval(tax);
-    elTotal.innerHTML = eval(tot).toFixed(2) + '$'
-  })
-  removID++;
-
-  // deletee.addEventListener('click', () => {
-  //   // for (let i = 0; i < newArr.length; i++) {
-  //   //   if (newArr[i] == deletee) {
-  //   console.log('asdadasdasd');
-  //   //   }
-  //   // }
-  // })
+      tot = eval(sub) + eval(tax);
+      elTotal.innerHTML = eval(tot).toFixed(2) + '$'
+      sanoq++;
+    }
+  }
 }
 
+function removeItem(index) {
+  let newArrRemove = [];
 
+  for (let i = 0; i < newArr.length; i++) {
+    if (index != i) {
+      newArrRemove.push(newArr[i]);
+    }
+  }
+
+  newArr = newArrRemove;
+
+  let subb = 0;
+  let taxx = 0;
+  let tott = 0;
+
+  elList.innerHTML = "";
+  elTotal.innerHTML = 0 + '$';
+  elTax.innerHTML = 0 + '$';
+  elSubtotal.innerHTML = 0 + '$';
+
+
+  for (let i = 0; i < newArr.length; i++) {
+    let li = document.createElement('li');
+    li.className = "piz__item";
+    li.innerHTML = `
+    <div class="piz__item-box d-flex">
+      <img class="piz__img" src=${newArr[i].imgg} alt="pizza">
+      <div class="piz__desc">
+        <h3 class="piz__item-title">${newArr[i].name}</h3>
+        <p class="piz__item-mony">$${newArr[i].mony}</p>
+        <span class="score">1</span>
+        <span class="delete-item-minus" onclick='removeItem(${i})'>-</span>
+        <span class="add-item-plus" onclick='addItem(${i})'>+</span>
+        </div>
+    </div>`;
+
+    subb += eval(newArr[i].mony);
+    elSubtotal.innerHTML = subb.toFixed(2) + '$';
+
+    taxx += eval(newArr[i].mony / 10);
+    elTax.innerHTML = taxx.toFixed(2) + '$';
+
+    tott = eval(subb) + eval(taxx);
+    elTotal.innerHTML = eval(tott).toFixed(2) + '$'
+    sanoq--;
+
+    elList.appendChild(li);
+  }
+}

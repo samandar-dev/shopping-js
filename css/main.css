@@ -386,8 +386,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%) scale(0.6);
+          transform: translate(-50%, -50%) scale(0.6);
 }
 
 .piz__left {
@@ -530,10 +530,56 @@ body {
   padding-left: 20px;
 }
 
-.delete-item {
+.score {
   position: absolute;
   right: 0;
-  top: 0;
+  top: -20px;
+  width: 40px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #fff;
+  border-radius: 50%;
+  background: #1242e2;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.add-item-plus {
+  position: absolute;
+  right: 60px;
+  bottom: 0;
+  width: 50px;
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #fff;
+  border-radius: 20px;
+  background: #2ab308;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.delete-item-minus {
+  position: absolute;
+  right: 0;
+  bottom: 0;
   width: 50px;
   height: 30px;
   display: -webkit-box;
