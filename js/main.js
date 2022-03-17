@@ -51,11 +51,14 @@ let elList = document.querySelector('.piz__list-two');
 let elSubtotal = document.querySelector('.subtotal');
 let elTax = document.querySelector('.tax');
 let elTotal = document.querySelector('.total');
-let deletee = document.querySelector('delete-item');
+let deletee = document.querySelector('.delete-item');
 
 let sub = 0
 let tax = 0
 let tot = 0
+
+let removID = 0
+let newArr = []
 
 for (let j = 0; j < elBtns.length; j++) {
   elBtns[j].addEventListener('click', () => {
@@ -66,11 +69,14 @@ for (let j = 0; j < elBtns.length; j++) {
                 <div class="piz__desc">
                   <h3 class="piz__item-title">${arr[j].name}</h3>
                   <p class="piz__item-mony">$${arr[j].mony}</p>
+                  <span class="delete-item" id="${removID}">-</span>
                   </div>
-                  <span class="delete-item">-</span>
               </div>`;
 
     elList.appendChild(li);
+    newArr[newArr.length] = arr[j]
+
+    console.log(newArr);
 
     sub = arr[j].mony;
     elSubtotal.innerHTML = sub + '$';
@@ -80,9 +86,16 @@ for (let j = 0; j < elBtns.length; j++) {
 
     tot += eval(sub) + eval(tax);
     elTotal.innerHTML = eval(tot).toFixed(2) + '$'
-
-    deletee.addEventListener('click', () => {
-      li.remove();
-    })
   })
+  removID++;
+
+  // deletee.addEventListener('click', () => {
+  //   // for (let i = 0; i < newArr.length; i++) {
+  //   //   if (newArr[i] == deletee) {
+  //   console.log('asdadasdasd');
+  //   //   }
+  //   // }
+  // })
 }
+
+
