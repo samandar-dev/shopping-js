@@ -78,11 +78,11 @@ for (let j = 0; j < elBtns.length; j++) {
 
     console.log(newArr);
 
-    sub = arr[j].mony;
-    elSubtotal.innerHTML = sub + '$';
+    sub += eval(arr[j].mony);
+    elSubtotal.innerHTML = sub.toFixed(2) + '$';
 
-    tax = arr[j].mony / 10;
-    elTax.innerHTML = tax + '$';
+    tax += eval(arr[j].mony / 10);
+    elTax.innerHTML = tax.toFixed(2) + '$';
 
     tot += eval(sub) + eval(tax);
     elTotal.innerHTML = eval(tot).toFixed(2) + '$'
