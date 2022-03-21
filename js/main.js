@@ -38,7 +38,7 @@ for (let i = 0; i < arr.length; i++) {
         <div class="piz__desc">
           <h3 class="piz__item-title">${index.name}</h3>
           <p class="piz__item-mony">$${index.mony}</p>
-          <button class="piz__item-btn btns" onclick='addItem(${index.id} )'>Add to Cart</button>
+          <button class="piz__item-btn btns" onclick='addItem(${index.id})'>Add to Cart</button>
         </div>
       </div>`
 
@@ -64,7 +64,6 @@ function addItem(id) {
       newArr.push(arr[i]);
     }
   }
-  console.log(newArr);
 
   for (let i = 0; i < newArr.length; i++) {
     if (i == newArr.length - 1) {
@@ -78,7 +77,7 @@ function addItem(id) {
           <p class="piz__item-mony">$${newArr[i].mony}</p>
           <span class="score">${sanoq}</span>
           <span class="delete-item-minus" onclick='removeItem(${i})'>-</span>
-          <span class="add-item-plus" onclick='addItem(${i})'>+</span>
+          <span class="add-item-plus" onclick='addItem(${newArr[i].id})'>+</span>
           </div>
       </div>`;
 
@@ -92,10 +91,12 @@ function addItem(id) {
 
       tot = eval(sub) + eval(tax);
       elTotal.innerHTML = eval(tot).toFixed(2) + '$'
-      sanoq++;
     }
   }
+
 }
+
+
 
 function removeItem(index) {
   let newArrRemove = [];
@@ -109,7 +110,7 @@ function removeItem(index) {
   newArr = newArrRemove;
 
   let subb = 0;
-  let taxx = 0;
+  let taxx = 0
   let tott = 0;
 
   elList.innerHTML = "";
@@ -141,8 +142,8 @@ function removeItem(index) {
 
     tott = eval(subb) + eval(taxx);
     elTotal.innerHTML = eval(tott).toFixed(2) + '$'
-    sanoq--;
 
     elList.appendChild(li);
   }
 }
+
