@@ -82,6 +82,7 @@ function addItem(id) {
       </div>`;
 
       elList.appendChild(li);
+      sanoq++;
 
       sub += eval(newArr[i].mony);
       elSubtotal.innerHTML = sub.toFixed(2) + '$';
@@ -93,10 +94,7 @@ function addItem(id) {
       elTotal.innerHTML = eval(tot).toFixed(2) + '$'
     }
   }
-
 }
-
-
 
 function removeItem(index) {
   let newArrRemove = [];
@@ -143,6 +141,9 @@ function removeItem(index) {
     tott = eval(subb) + eval(taxx);
     elTotal.innerHTML = eval(tott).toFixed(2) + '$'
 
+    if (sanoq > 1) {
+      sanoq--;
+    }
     elList.appendChild(li);
   }
 }
